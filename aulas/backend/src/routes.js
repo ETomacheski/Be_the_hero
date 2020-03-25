@@ -12,7 +12,7 @@ const SessionController = require('./controllers/session_controller');
 const routes = express.Router();
 
 //rota login
-routes.post('/session/:page',SessionController.create);
+routes.post('/session',SessionController.create);
 
 //rotas relacionadas as ongs
 routes.get('/ongs', ongControler.index);

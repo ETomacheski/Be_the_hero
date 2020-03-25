@@ -37,8 +37,8 @@ module.exports = {
 
     
         }
-        await connection('incidents').where('id', id).delete();
+        await (connection('incidents').where('id', id).delete());
 
-        return response.status(400).send();
+        return response.status(204).send();
     }
 }
