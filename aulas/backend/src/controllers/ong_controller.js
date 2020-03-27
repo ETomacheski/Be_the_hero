@@ -1,5 +1,5 @@
 const connection = require('../database/connection');
-const crypto = require('crypto');
+const GenereteId = require('../utils/genereteid');
 
 module.exports = {
     async index(request,response){ //responsável por listar 
@@ -10,7 +10,7 @@ module.exports = {
     
     async create(request,response){ //responsável por crear uma ong
         const {name,email,whatsapp,city,uf}= request.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = GenereteId();
 
         await connection('ongs').insert({
             id,
