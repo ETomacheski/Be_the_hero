@@ -2,6 +2,9 @@ const express =  require('express');
 const routes = require('./routes');
 const cors = require('cors');
 const {errors} = require('celebrate');
+const session = require("express-session");
+const passport = require("passport");
+
 
 const app = express();
 
@@ -10,7 +13,15 @@ app.use(express.json());
 app.use(routes);
 app.use(errors());
 
+app.use(session({
+    secret: "sistema",
+    resave: true,
+    saveUnitialized: true
 
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 /*  // comentarios sobre o video
 Metodos 

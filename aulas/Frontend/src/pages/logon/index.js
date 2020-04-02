@@ -13,15 +13,17 @@ import LogoImg from '../../assets/logo.svg'
 
 export default function Logon(){
     const  History = useHistory();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [id, setId] = useState('');
     
     async function handlelogin(e){
         e.preventDefault();
 
         try{
-            const response = await api.post('session',{id});
-
-            localStorage.setItem('ongId',id);
+            const response = await api.post('session',{email,password});
+            console.log(response);
+            localStorage.setItem('ongId',response.data.id);
             localStorage.setItem('ongName',response.data.name);
             History.push('/profile');
         
@@ -39,9 +41,14 @@ export default function Logon(){
                 <form onSubmit={handlelogin}>
                     <h1>Faça seu logon</h1>
 
-                    <input placeholder= "Sua ID"
-                    value ={id}
-                    onChange ={e => setId(e.target.value)}
+                    <input placeholder= "Seu E-mail"
+                    value ={email}
+                    onChange ={e => setEmail(e.target.value)}
+                    />
+                    <input placeholder= "Sua senha"
+                    value ={password}
+                    type = "password"
+                    onChange ={e => setPassword(e.target.value)}
                     />
                     <button type="submit" className="button">Entrar</button>
                     <Link to="/register" className=".black-link" >

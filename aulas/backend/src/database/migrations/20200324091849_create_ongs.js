@@ -7,6 +7,7 @@ exports.up = function(knex) {
     table.string('whatsapp').notNullable();
     table.string('city').notNullable();
     table.string('uf',4).notNullable();
+    table.string('password').notNullable();
 });
 };
 
